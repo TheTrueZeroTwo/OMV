@@ -9,23 +9,23 @@ In between every step there should be a reboot
 https://www.openmediavault.org/?page_id=77
 
 #s tep 2 Install OMV extras
-SSH into OMV using a terminal (ssh root@omv.local)
+SSH into OMV using a terminal eg(ssh root@omv.local).
 
 ```sh
 wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash
 ```
 # step 3 Install plugins
 The plugins i use are
-```
-FTP
-KERNEL
-KVM
-NUT
-ZFS
-```
+
+- [ ] FTP
+- [ ] KERNEL
+- [ ] KVM
+- [ ] NUT
+- [ ] ZFS
+
 
 # step 4 Install core componets
-```
-Install Promox kernel
-Setup ZFS
-```
+
+- [ ] Install Promox kernel
+- [ ] Setup ZFS
+
