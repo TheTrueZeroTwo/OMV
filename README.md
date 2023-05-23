@@ -60,3 +60,47 @@ The plugins i use are
 - [ ] Add group with the same name
 
 - [ ] Add Docker containers
+
+
+
+    If using NVidia GPU
+- [ ] Install Nvidia container Toolbox (https://forum.openmediavault.org/index.php?thread/38013-howto-nvidia-hardware-transcoding-on-omv-5-in-a-plex-docker-container/&postID=313378#post313378)
+`apt-get install module-assistant`
+`sudo m-a prepare`
+`nano /etc/apt/sources.list`
+add if ***not*** there
+# Debian Bullseye
+deb http://deb.debian.org/debian/ bullseye main contrib non-free
+`apt update`
+`apt install nvidia-driver firmware-misc-nonfree`
+If there are no errors
+`apt install nvidia-xconfig`
+`sudo nvidia-xconfig`
+`echo 'GRUB_CMDLINE_LINUX=systemd.unified_cgroup_hierarchy=false' > /etc/default/grub.d/cgroup.cfg`
+`update-grub`
+`reboot now`
+
+`apt install nvidia-smi`
+`nvidia-smi`
+`apt install curl`
+```sh
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+      && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+      && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
+            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+`sudo apt-get update`
+`apt install nvidia-docker2`
+`apt install libnvidia-encode1`
+`apt install nvidia-container-runtime`
+`sudo systemctl restart docker`
+open Jellyfin
+in the tab "Runtime & Ressources":
+change the "Runtime" Value from runc to nvidia !!!
+add enviriment variable
+NVIDIA_VISIBLE_DEVICES=all
+`apt install git`
+`git clone https://github.com/keylase/nvidia-patch.git nvidia-patch`
+`cd nvidia-patch`
+`bash ./patch.sh`
