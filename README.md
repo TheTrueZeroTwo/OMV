@@ -1,7 +1,7 @@
 # OMV
 Steps for creating a OMV nas that is running selfhosted docker docker containers
 
-In between every step there should be a reboot
+In between every step there should be a reboot and ctrl-shift-f5 on the webpage.
 (you could get away with less rebooting but because a lot is being changed i like to make sure that i take my time.
 
 
@@ -28,4 +28,7 @@ The plugins i use are
 
 - [ ] Install Promox kernel
 - [ ] Setup ZFS
+- [ ] Install Docker
+- [ ] Install Portainer (Setup admin account after installing as there is a timeout for it)
+- [ ] 
 
