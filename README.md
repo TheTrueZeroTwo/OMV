@@ -74,9 +74,13 @@ sudo m-a prepare
 ```
 nano /etc/apt/sources.list
 ```
-add if ***not*** there
+add if ***not*** there add
+
+```sh
 # Debian Bullseye
 deb http://deb.debian.org/debian/ bullseye main contrib non-free
+```
+
 ```
 apt update
 ```
