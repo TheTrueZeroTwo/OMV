@@ -80,12 +80,14 @@ add if ***not*** there add
 # Debian Bullseye
 deb http://deb.debian.org/debian/ bullseye main contrib non-free
 ```
-
+To save and exit press ctrl+x then y
 ```
 apt update
 ```
-```apt install nvidia-driver firmware-misc-nonfree
 ```
+apt install nvidia-driver firmware-misc-nonfree
+```
+
 If there are no errors
 ```
 apt install nvidia-xconfig
