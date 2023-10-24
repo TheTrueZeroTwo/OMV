@@ -6,9 +6,43 @@ In between every step there should be a reboot and ctrl-shift-f5 on the webpage.
 
 
 # Step 1 Download and instalation
-https://www.openmediavault.org/?page_id=77
+
+- [ ] If offered a choice, chose the text install.
+- [ ] Boot Menu: Select Install
+- [ ] Select a Language: (As needed)
+- [ ] Select your Location: (As appropriate.)
+- [ ] Configure the Keyboard: (Select as appropriate)
+- [ ] Configure the Network (eg. OMV)
+- [ ] Configure the Network (local)
+- [ ] Follow the on screen guidance for setting the root password.
+- [ ] Select your time zone.
+- [ ] Select Your Main/System Drive
+- [ ] window asks for confirmation of partition selections. Select Yes.
+- [ ] picking your country or the closest location to your country would be the logical choice.
+- [ ] The default choice is usually best.
+- [ ] In most cases this entry will be blank.
+- [ ] (IF Prompted) Install the GRUB Boot Loader on a Hard Disk.
+- [ ] Finish the Installation
+
+In a web browser's address bar, type in the IP address provided by the first boot screen:
+Set the language of your choice.
+The user name is admin and default password is openmediavault
+
+
 
 #s tep 2 Install OMV extras
+
+- [ ] Enter SSH
+- [ ] Enable [X]
+- [ ] Change Port
+[X] Permit root login
+Specifies whether it is allowed to login as superuser.
+[X] Password authentication
+Enable keyboard-interactive authentication.
+[X] Public key authentication
+Enable public key authentication.
+
+
 SSH into OMV using a terminal eg(ssh root@omv.local).
 
 ```sh
@@ -23,9 +57,22 @@ The plugins i use are
 - [ ] NUT
 - [ ] ZFS
 
-# Step 4 Set up OMV
 
-- [ ] Sign into OMV
+# step 4 Install core componets
+- [ ] Expand Storage
+- [ ] Enter Disks
+- [ ] Make sure all your drives are detected
+
+- [ ] Expand zfs
+- [ ] Enter Pools
+- [ ] Make a pool
+- [ ] Name=pool, https://www.raidz-calculator.com/raidz-types-reference.aspx, Select all devices
+- [ ] Save
+
+- [ ] Enter Shared Folders
+- [ ] Add (Case sensitive), Backup, Media, Storage, Isos, Volumes, Print, Docker
+
+- [ ] Install Promox kernel
 
 - [ ] Expand system
 - [ ] Enter Workbench
@@ -59,21 +106,6 @@ The plugins i use are
 - [ ] Expand network
 - [ ] enter Interfaces
 - [ ] Set static ip and enable WOL, Disable ipv6 if you want
-
-
-- [ ] Expand Storage
-- [ ] Enter Disks
-- [ ] Make sure all your drives are detected
-
-- [ ] Expand zfs
-- [ ] Enter Pools
-- [ ] Make a pool
-- [ ] Name=pool, https://www.raidz-calculator.com/raidz-types-reference.aspx, Select all devices
-- [ ] Save
-
-- [ ] Enter Shared Folders
-- [ ] Add (Case sensitive), Backup, Media, Storage, Isos, Volumes, Print, Docker
-
 
 - [ ] Expand Services
 - [ ] Enter Compose
@@ -115,34 +147,6 @@ volumes:
       
 - [ ] Enter Services
 - [ ] Make sure Portainer is up and running
-
-- [ ] Enter SMB/CIFS (or your preferd shaing protocal)
-- [ ] Enter Settings
-- [ ] Enable
-- [ ] Enter Shares
-- [ ] Select all Shares exept Isos, Volumes
-
-- [ ] If using a UPS enter UPS
-- [ ] Enable and setup according to the UPS Specification
-- [ ] Test the settings
-
-- [ ] Enter SSH
-- [ ] Enable [X]
-- [ ] Change Port
-[X] Permit root login
-Specifies whether it is allowed to login as superuser.
-[X] Password authentication
-Enable keyboard-interactive authentication.
-[X] Public key authentication
-Enable public key authentication.
-
-## Basic setup is done ##
-
-# step 5 Install core componets
-
-- [ ] Install Promox kernel
-- [ ] Setup ZFS
-- [ ] Install Docker
 - [ ] Install Portainer (Setup admin account after installing as there is a timeout for it)
 - [ ] Set up Certificates
 - [ ] use cert for ssl
@@ -165,19 +169,27 @@ Enable public key authentication.
 - [ ] Enable shared folders (client is the first 3 numbers + 0 / 24 eg 192.168.1.0/24)
 - [ ] Ebable RSync if using it
 - [ ] Add Modules (shared folders)
-- [ ] Enable SMB/CIFS
-- [ ] Add shared folders
+
+- [ ] Enter SMB/CIFS (or your preferd shaing protocal)
+- [ ] Enter Settings
+- [ ] Enable
+- [ ] Enter Shares
+- [ ] Select all Shares exept Isos, Volumes
+
+
 
 - [ ] Enable UPS (If you don't have one I ***Highly*** reccomend to get on, Cyber Power ones are a good starting one)
+- [ ] Enable and setup according to the UPS Specification
+- [ ] Test the settings
 
 - [ ] Add users (at least one for docker containers eg abc, if you don't want an account to be able to login set shell to nologin, if you dont want a acount to chage itself dissallow account modification)
 - [ ] Add group with the same name
 
-- [ ] Add Docker containers
+- [ ] Add Docker containers in portainer eg. Stacks
 
 
 
-    If using NVidia GPU
+    ## If using NVidia GPU ##
 - [ ] Install Nvidia container Toolbox (https://forum.openmediavault.org/index.php?thread/38013-howto-nvidia-hardware-transcoding-on-omv-5-in-a-plex-docker-container/&postID=313378#post313378)
 ```
 apt-get install module-assistant
@@ -267,3 +279,11 @@ cd nvidia-patch
 ```
 bash ./patch.sh
 ```
+
+
+# Helpful Links #
+https://wiki.omv-extras.org/
+
+https://wiki.omv-extras.org/doku.php?id=omv6:new_user_guide
+
+https://www.openmediavault.org/?page_id=77
