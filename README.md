@@ -23,8 +23,122 @@ The plugins i use are
 - [ ] NUT
 - [ ] ZFS
 
+# Step 4 Set up OMV
 
-# step 4 Install core componets
+- [ ] Sign into OMV
+
+- [ ] Expand system
+- [ ] Enter Workbench
+- [ ] Set Aoutlogout, Enable SSL (click the + to create a new cert)
+
+- [ ] Enter Date and Time
+- [ ] Use a NTP server
+- [ ] pool.ntp.org, [your gatewayip]/24
+
+- [ ] Expand notifications
+- [ ] Enter settings
+- [ ] Smtp server=smtp.gmail.com, Port=587, Encryption=Starttls, email=[your email], auth required [x], username=[your email to login], passowrd=[your google app password], Revipient email=[where the email is sent to]
+
+- [ ] Enter events
+- [ ] Select the events you want notifications for
+
+- [ ] Enter Monitoring
+- [ ] Make sure it is checked [X]
+
+- [ ] Enter Backup
+- [ ] select settings
+- [ ] Setup Backup of your main/system drive
+
+- [ ] Enter Kernel
+- [ ] Maksure the Linux x.x.xx - pve is default
+
+- [ ] enter omv extras
+- [ ] make sre docker repo is checked [X]
+
+
+- [ ] Expand network
+- [ ] enter Interfaces
+- [ ] Set static ip and enable WOL, Disable ipv6 if you want
+
+
+- [ ] Expand Storage
+- [ ] Enter Disks
+- [ ] Make sure all your drives are detected
+
+- [ ] Expand zfs
+- [ ] Enter Pools
+- [ ] Make a pool
+- [ ] Name=pool, https://www.raidz-calculator.com/raidz-types-reference.aspx, Select all devices
+- [ ] Save
+
+- [ ] Enter Shared Folders
+- [ ] Add (Case sensitive), Backup, Media, Storage, Isos, Volumes, Print, Docker
+
+
+- [ ] Expand Services
+- [ ] Enter Compose
+- [ ] Enter Settings
+- [ ] Install docker
+- [ ] Compose Files
+Docker [on /dev/sdf2, docker/]
+Shared folder
+Location of compose files
+abc
+Owner of directories and files *
+abc
+Group of directories and files *
+Administrator - read/write, Users - read/write, Others - read-only
+- [ ] Enter Files
+- [ ] Add
+```yml
+---
+version: "3"
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/volumes/portainer_data:/data
+    ports:
+      - 9000:9000
+volumes:
+  portainer-data:
+    external: true
+    name: portainer_data
+```
+- [ ] Make sure it is up
+      
+- [ ] Enter Services
+- [ ] Make sure Portainer is up and running
+
+- [ ] Enter SMB/CIFS (or your preferd shaing protocal)
+- [ ] Enter Settings
+- [ ] Enable
+- [ ] Enter Shares
+- [ ] Select all Shares exept Isos, Volumes
+
+- [ ] If using a UPS enter UPS
+- [ ] Enable and setup according to the UPS Specification
+- [ ] Test the settings
+
+- [ ] Enter SSH
+- [ ] Enable [X]
+- [ ] Change Port
+[X] Permit root login
+Specifies whether it is allowed to login as superuser.
+[X] Password authentication
+Enable keyboard-interactive authentication.
+[X] Public key authentication
+Enable public key authentication.
+
+## Basic setup is done ##
+
+# step 5 Install core componets
 
 - [ ] Install Promox kernel
 - [ ] Setup ZFS
