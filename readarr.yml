@@ -1,17 +1,32 @@
 ---
 version: "2.1"
 services:
-  readarr:
+  readarr-audio:
     image: lscr.io/linuxserver/readarr:develop
-    container_name: readarr
+    container_name: readarr-audio
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Denver
     volumes:
-      - /docker/readarr/config:/config
+      - /docker/readarr-audio/config:/config
       - /pool/Media/Books:/books #optional
       - /pool/Storage/downloads:/downloads #optional
     ports:
       - 8787:8787
+    restart: unless-stopped
+    
+  readarr-ebook:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr-ebook
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Denver
+    volumes:
+      - /docker/readarrEbook/config:/config
+      - /pool/Media/Books:/books #optional
+      - /pool/Storage/downloads:/downloads #optional
+    ports:
+      - 8788:8787
     restart: unless-stopped
